@@ -16,7 +16,7 @@
   become: yes
 
 - name: upload wp-config
-  tamplates:
+  template:
      src: wp-config.php.j2
      dest: /var/www/html/wordpress/wp-config.php
   become: yes
