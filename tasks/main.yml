@@ -14,3 +14,15 @@
      line: "DocumentRoot /var/www/html/wordpress"
   notify: Restart Apache
   become: yes
+
+- name: upload wp-config
+  tamplates:
+     src: wp-config.php.j2
+     dest: /var/www/html/wordpress/wp-config.php
+  become: yes
+
+- name: restart apache
+  service: 
+     name: apache2
+     state: restarted
+  become: yes
