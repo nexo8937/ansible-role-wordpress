@@ -7,6 +7,14 @@
      remote_src: yes
   become: yes
 
+- name: create wordpress db
+  mysql_db:
+     name: wordpress
+     state: present
+     login_user: root
+     login_password: exoexoexo
+  become: yes
+
 - name: update Apache site
   lineinfile:
      dest: /etc/apache2/sites-enabled/000-default.conf
