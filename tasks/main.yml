@@ -9,20 +9,20 @@
 
 - name: create wordpress db
   mysql_db:
-     name: {{ wordpress_db_name }}
+     name: "{{ wordpress_db_name }}"
      state: present
-     login_user: {{ mysql_user_name }}
-     login_password: {{ mysql_user_password  }}
+     login_user: "{{ mysql_user_name }}"
+     login_password: "{{ mysql_user_password  }}"
   become: yes
 
 - name: upload wp-config
   template:
      src: wp-config.php.j2
-     dest: {{ wp_conf_file_dest }}
+     dest: "{{ wp_conf_file_dest }}"
   become: yes
 
 - name: restart apache
-  service: 
+  service:
      name: apache2
      state: restarted
   become: yes
