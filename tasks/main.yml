@@ -9,24 +9,16 @@
 
 - name: create wordpress db
   mysql_db:
-     name: wordpress
+     name: {{ wordpress_db_name }}
      state: present
-     login_user: root
-     login_password: exoexoexo
-  become: yes
-
-- name: update Apache site
-  lineinfile:
-     dest: /etc/apache2/sites-enabled/000-default.conf
-     regexp: "(.)+DocumentRoot /var/www/html"
-     line: "DocumentRoot /var/www/html/wordpress"
-  notify: Restart Apache
+     login_user: {{ mysql_user_name }}
+     login_password: {{ mysql_user_password  }}
   become: yes
 
 - name: upload wp-config
   template:
      src: wp-config.php.j2
-     dest: /var/www/html/wordpress/wp-config.php
+     dest: {{ wp_conf_file_dest }}
   become: yes
 
 - name: restart apache
