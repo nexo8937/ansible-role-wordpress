@@ -1,2 +1,8 @@
 ---
 # defaults file for wordpress
+wordpress_db_name:     wordpress
+
+mysql_user_name:       exo
+mysql_user_password:   exoexoexo
+
+wp_conf_file_dest:     /var/www/html/wordpress/wp-config.php
